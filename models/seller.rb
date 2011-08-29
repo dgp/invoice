@@ -1,8 +1,8 @@
-class Seller
-  attr_reader :seller_name, :seller_address
+require File.dirname(__FILE__) + '/agent'
+
+class Seller < Agent
 
    def initialize(seller_name, seller_address)
-     @seller_name = seller_name
-     @seller_address = seller_address
-   ends
+     super(seller_name, seller_address)
+   end
 end
