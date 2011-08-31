@@ -1,9 +1,9 @@
 class Agent
-  attr_reader :agent_name, :agent_address
+  attr_accessor :name, :address
 
-   def initialize(agent_name, agent_address)
-     @agent_name = agent_name
-     @agent_address = agent_address
+   def initialize(name, address)
+     @name = name
+     @address = address
    end
    
 end
