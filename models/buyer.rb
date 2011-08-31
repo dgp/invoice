@@ -3,11 +3,12 @@ require File.dirname(__FILE__) + '/invoice'
 require 'date'
 
 class Buyer < Agent
-  attr_reader :invoices, :paid_amount
+  attr_reader :invoices, :paid_amount, :un_paid_amount
     
   def initialize(name, address)
     @invoices = []
     @paid_amount = 0
+    @un_paid_amount = 0
     super(name, address)
   end
   
@@ -20,8 +21,20 @@ class Buyer < Agent
     @invoices.each do |invoice|
       month = invoice.date.strftime("%m")
       if month.to_i == particular_month
-        invoice.paid_invoice?
-         puts @paid_amount += invoice.paid_amount
+        if invoice.paid_invoice?
+          @paid_amount += invoice.paid_amount
+        end
+      end
+    end
+  end
+  
+  def get_invoice_till_date(date)
+    date_formate = Date.strptime(date)
+    @invoices.each do |invoice|
+      if invoice.date <= date_formate
+        if invoice.partially_paid?
+          puts @un_paid_amount += invoice.balance_un_paid_amount
+        end
       end
     end
   end

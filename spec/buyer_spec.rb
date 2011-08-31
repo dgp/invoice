@@ -20,32 +20,38 @@ describe Buyer do
   #   end
   before(:each) do
     @invoice_1 = Invoice.new('aaa','2011-03-21')
-    @invoice_2 = Invoice.new('aaa', '2011-03-21')
-    @invoice_3 = Invoice.new('aaa', '2011-05-21')
+    @invoice_2 = Invoice.new('aaa', '2011-04-21')
+    @invoice_3 = Invoice.new('aaa', '2011-04-21')
     @buyer = Buyer.new('aaa', 'dasdsed')
-    @invoice_1.add_product(1, 'AAAA', 4, 40, 3)
-    @invoice_1.add_product(1, 'AA', 4, 40, 6)
-    @invoice_2.add_product(1, 'AAAA', 4, 40, 3)
-    @invoice_3.add_product(1, 'AA', 4, 40, 6)
+    @invoice_1.add_product(1, 'AAAA', 4, 4, 3)
+    @invoice_1.add_product(1, 'AA', 4, 4, 6)
+    @invoice_2.add_product(1, 'AAAA', 4, 4, 3)
+    @invoice_3.add_product(1, 'AA', 4, 4, 6)
     @buyer.add_invoice(@invoice_1)
     @buyer.add_invoice(@invoice_2)
     @buyer.add_invoice(@invoice_3)
     @invoice_1.calculate_total_product_price 
     @invoice_2.calculate_total_product_price 
     @invoice_3.calculate_total_product_price 
-    @invoice_1.make_payement(360)
-    @invoice_2.make_payement(360)
-    @invoice_3.make_payement(300)
+    @invoice_1.make_payement(36)
+    @invoice_2.make_payement(8)
+    @invoice_3.make_payement(20)
   end
   
-  it "should add invoices" do
+  it "should add invoices and check for particular month" do
     @buyer.get_particular_month_paid_amount(3)
-    @buyer.paid_amount.should eq(720)
+    @buyer.paid_amount.should eq(36)
+  end
+
+  it "should check for particular month but calculate un paid amount" do
+    @buyer.get_particular_month_paid_amount(4)
+    @buyer.paid_amount.should_not eq(13)
   end
   
-
-  
-  
+  it "should check the invoice for the given date" do
+    @buyer.get_invoice_till_date('2011-04-21')
+    @buyer.un_paid_amount.should eq(8)
+  end  
 end
 
 
