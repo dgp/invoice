@@ -15,7 +15,7 @@ describe Invoice do
   end
   
   it "should check the date of invoice" do
-    @invoice.date.should eq('2011-03-21')
+    @invoice.date.to_s.should eq('2011-03-21')
   end
     
   def calculate_total_product_price

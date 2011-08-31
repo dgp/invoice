@@ -9,7 +9,7 @@ class Invoice
   def initialize(number, date)
     
     @products = [ ]
-    @date = Date.strptime(date).to_s
+    @date = Date.strptime(date)
     @un_paid_balance_amount = 0
     @balance_amount = 0
     @number = number
