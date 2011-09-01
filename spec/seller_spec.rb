@@ -42,4 +42,10 @@ describe Seller do
      @seller_2.invoice_raised.should eq(2)
    end 
    
+   it "should not check how many invoice raised for a seller " do
+      @seller_2.name.should_not eq("seller2")
+      @seller_2.invoice_raised.should_not eq(3)
+    end 
+   
+   
 end
