@@ -4,10 +4,22 @@ require "/Users/dinesh/invoice/models/buyer.rb"
 
 describe Invoice do
   before(:each) do
+    @seller = Seller.new('name', 'select_address')
+    @buyer = Buyer.new('buyer', 'buyer_address')
     @invoice = Invoice.new(1, '2011-03-21')
+    @invoice_1 = Invoice.new(2,'2011-03-21')
+    @invoice.set_buyer(@buyer)
+    @invoice_1.set_buyer(@buyer)
     @invoice.add_product(1, 'AAAA', 4, 40, 3)
-    @invoice.add_product(1, 'AA', 4, 40, 6)  
-    calculate_total_product_price     
+    @invoice.add_product(2, 'AA', 4, 40, 6)  
+    @invoice_1.add_product(1, 'AAAA', 4, 4, 3)
+    @invoice_1.add_product(2, 'AA', 4, 4, 6)  
+    @buyer.add_invoice(@invoice)
+    @buyer.add_invoice(@invoice_1)
+    @invoice.calculate_total_product_price 
+    @invoice_1.calculate_total_product_price 
+    @invoice.make_payement(360)  
+    @invoice_1.make_payement(36)
   end
   
   it "should initialize the invoice" do
@@ -56,13 +68,18 @@ describe Invoice do
     @invoice.make_payement(1)
     @invoice.partially_paid?.should be_true
   end 
-   
-  it "should initialize the seller and buyer name" do
-   @invoice.set_seller('name', 'select_address')
-   @invoice.set_buyer('buyer', 'buyer_address')
-   @invoice.seller.name.should eq('name')
-   @invoice.buyer.name.should eq('buyer')
- end
-   
+ 
+  it "should display who paid" do
+    
+    @invoice.buyer.name.should eq('buyer')
+    @buyer.get_particular_month_paid_amount(3)
+    @invoice.buyer.name.should eq('buyer')
+  end
+ 
+  it "should display how much paid and when " do
+    @buyer.get_particular_month_paid_amount(3)
+    @invoice.buyer.paid_amount.should eq(396)
+    @invoice.date.to_s.should eq('2011-03-21')
+  end
  
 end

@@ -19,9 +19,9 @@ describe Buyer do
   #     @agent = Buyer.new('dc','dscv')
   #   end
   before(:each) do
-    @invoice_1 = Invoice.new('aaa','2011-03-21')
-    @invoice_2 = Invoice.new('aaa', '2011-04-21')
-    @invoice_3 = Invoice.new('aaa', '2011-04-21')
+    @invoice_1 = Invoice.new(1,'2011-03-21')
+    @invoice_2 = Invoice.new(2, '2011-04-21')
+    @invoice_3 = Invoice.new(3, '2011-04-21')
     @buyer = Buyer.new('aaa', 'dasdsed')
     @invoice_1.add_product(1, 'AAAA', 4, 4, 3)
     @invoice_1.add_product(1, 'AA', 4, 4, 6)
@@ -52,6 +52,12 @@ describe Buyer do
     @buyer.get_invoice_till_date('2011-04-21')
     @buyer.un_paid_amount.should eq(8)
   end  
+  
+  it "should check the invoice for the given date but no invoice found" do
+    @buyer.get_invoice_till_date('2010-04-21')
+    @buyer.un_paid_amount.should eq(0)
+  end  
+  
 end
 
 

@@ -30,12 +30,12 @@ class Invoice
     @total_product_price = total_price
   end
   
-  def set_seller(name, address)
-    @seller = Seller.new(name, address)
+  def set_seller(seller)
+    @seller = seller
   end
   
-  def set_buyer(name, address)
-    @buyer = Buyer.new(name, address)
+  def set_buyer(buyer)
+    @buyer = buyer
   end
   
   #TODO, you need to keep track of paid amount and the unpaid_balance should be calculated

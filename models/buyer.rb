@@ -21,9 +21,7 @@ class Buyer < Agent
     @invoices.each do |invoice|
       month = invoice.date.strftime("%m")
       if month.to_i == particular_month
-        if invoice.paid_invoice?
-          @paid_amount += invoice.paid_amount
-        end
+        puts caluculate_paid_amount(invoice)
       end
     end
   end
@@ -32,10 +30,21 @@ class Buyer < Agent
     date_formate = Date.strptime(date)
     @invoices.each do |invoice|
       if invoice.date <= date_formate
-        if invoice.partially_paid?
-          puts @un_paid_amount += invoice.balance_un_paid_amount
-        end
+        caluculate_un_paid_amount(invoice)
       end
     end
   end
+  
+  
+  def caluculate_paid_amount(invoice)
+    if invoice.paid_invoice?
+      @paid_amount += invoice.paid_amount
+    end
+  end
+  
+  def caluculate_un_paid_amount(invoice)
+     if invoice.partially_paid?
+       @un_paid_amount += invoice.balance_un_paid_amount
+     end
+   end
 end
