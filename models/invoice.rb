@@ -3,47 +3,32 @@ require 'date'
 
 class Invoice 
   
-  attr_reader :number, :date, :products, :total_product_price, :balance_un_paid_amount, :paid_amount, :balance_amount, :date 
+  attr_reader :number, :date, :products, :paid_amount, :date 
   attr_accessor :seller, :buyer
   
   def initialize(number, date)
     
     @products = [ ]
     @date = Date.strptime(date)
-    @un_paid_balance_amount = 0
-    @balance_amount = 0
+    @paid_amount = 0
     @number = number
   end
   
-  def add_product(sq_no, product_name, no_of_team_member, hours_worked, payment_per_hour)
-    @products.push(Product.new(sq_no, product_name, no_of_team_member, hours_worked, payment_per_hour, (payment_per_hour * hours_worked)))
+  def add_product(product_no, product_detail, product_price)
+    @products.push(Product.new(product_no, product_detail, product_price))
   end
   
   #TODO: find out better ways to doing this by looking into Array/Enumerable methods
-  def calculate_total_product_price()
-    total_price = 0
-    length = @products.length - 1
-    for i in 0..length
-      product = @products[i]
-      total_price += product.price 
-    end
-    @total_product_price = total_price
+  def calculate_total_product_price
+    total_price = @products.map{|product| product.price}
+    total_price.reduce(:+)
   end
   
-  def set_seller(seller)
-    @seller = seller
-  end
-  
-  def set_buyer(buyer)
-    @buyer = buyer
-  end
-  
+    
   #TODO, you need to keep track of paid amount and the unpaid_balance should be calculated
   def make_payement(amount)
     if amount
       @paid_amount = amount
-      @balance_amount = amount - @total_product_price
-      @balance_un_paid_amount = @total_product_price - amount  
     end
   end
   

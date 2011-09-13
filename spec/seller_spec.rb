@@ -1,6 +1,6 @@
-require "/Users/dinesh/invoice/models/seller.rb"
-require "/Users/dinesh/invoice/models/agent.rb"
-require "/Users/dinesh/invoice/models/invoice.rb"
+require "/Users/dinesh/invoice/invoice/models/seller.rb"
+require "/Users/dinesh/invoice/invoice/models/agent.rb"
+require "/Users/dinesh/invoice/invoice/models/invoice.rb"
 
 
 # describe Seller do

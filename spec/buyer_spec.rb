@@ -1,5 +1,5 @@
-require "/Users/dinesh/invoice/models/buyer.rb"
-require "/Users/dinesh/invoice/models/invoice.rb"
+require "/Users/dinesh/invoice/invoice/models/buyer.rb"
+require "/Users/dinesh/invoice/invoice/models/invoice.rb"
 
 
 # describe Buyer do

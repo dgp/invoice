@@ -1,6 +1,6 @@
-require "/Users/dinesh/invoice/models/invoice"
-require "/Users/dinesh/invoice/models/seller.rb"
-require "/Users/dinesh/invoice/models/buyer.rb"
+require "/Users/Dinesh/invoice/invoice/models/invoice.rb"
+require "/Users/Dinesh/invoice/invoice/models/seller.rb"
+require "/Users/Dinesh/invoice/invoice/models/buyer.rb"
 
 describe Invoice do
   before(:each) do
@@ -8,17 +8,17 @@ describe Invoice do
     @buyer = Buyer.new('buyer', 'buyer_address')
     @invoice = Invoice.new(1, '2011-03-21')
     @invoice_1 = Invoice.new(2,'2011-03-21')
-    @invoice.set_buyer(@buyer)
-    @invoice_1.set_buyer(@buyer)
-    @invoice.add_product(1, 'AAAA', 4, 40, 3)
-    @invoice.add_product(2, 'AA', 4, 40, 6)  
-    @invoice_1.add_product(1, 'AAAA', 4, 4, 3)
-    @invoice_1.add_product(2, 'AA', 4, 4, 6)  
+    @invoice.buyer = @buyer
+    @invoice.buyer = @buyer
+    @invoice.add_product(1, 'AAAA', 30)
+    @invoice.add_product(2, 'AA', 60)  
+    @invoice_1.add_product(1, 'AAAA', 30)
+    @invoice_1.add_product(2, 'AA', 60)  
     @buyer.add_invoice(@invoice)
     @buyer.add_invoice(@invoice_1)
     @invoice.calculate_total_product_price 
     @invoice_1.calculate_total_product_price 
-    @invoice.make_payement(360)  
+    @invoice.make_payement(90)  
     @invoice_1.make_payement(36)
   end
   

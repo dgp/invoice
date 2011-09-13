@@ -1,18 +1,10 @@
 class Product
-  attr_reader :sq_no, :name, :no_of_team_member, :hours_worked, :payment_per_hour, :price
-  def initialize(sq_no, name, no_of_team_member, hours_worked, payment_per_hour, price)
+  attr_reader :number, :detail, :price
+  def initialize(number, detail, price)
     @products = [ ]
-    @sq_no = sq_no
-    @name = name
-    @no_of_team_member = no_of_team_member
-    @hours_worked = hours_worked
-    @payment_per_hour = payment_per_hour
+    @number = number
+    @detail = detail
     @price = price
   end
-  
-  def length
-    @products.length
-  end
-  
   
 end
