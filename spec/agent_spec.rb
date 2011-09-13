@@ -1,7 +1,6 @@
-require "/Users/dinesh/invoice/invoice/models/Agent.rb"
-require "/Users/dinesh/invoice/invoice/models/buyer.rb"
-require "/Users/dinesh/invoice/invoice/models/seller.rb"
-# 
+require "/Users/dinesh/project/invoice/models/Agent.rb"
+require "/Users/dinesh/project/invoice/models/buyer.rb"
+require "/Users/dinesh/project/invoice/models/seller.rb"
 # share_examples_for "a agent" do
 #   it "should initialize the name and address" do
 #     agent.name.should eq("aaa")

@@ -21,8 +21,7 @@ describe Buyer do
   before(:each) do
     @invoice_1 = Invoice.new(1,'2011-03-21')
     @invoice_2 = Invoice.new(2, '2011-04-21')
-    @invoice_3 = Invoice.new(3, '2011-04-21')
-    @buyer = Buyer.new('aaa', 'dasdsed')
+    @invoice_3 = Invoice.new(3, '2011-03-21')
     @invoice_1.add_product(1, 'AAAA', 4, 4, 3)
     @invoice_1.add_product(1, 'AA', 4, 4, 6)
     @invoice_2.add_product(1, 'AAAA', 4, 4, 3)
@@ -35,25 +34,25 @@ describe Buyer do
     @invoice_3.calculate_total_product_price 
     @invoice_1.make_payement(36)
     @invoice_2.make_payement(8)
-    @invoice_3.make_payement(20)
+    @invoice_3.make_payement(26)
   end
   
-  it "should add invoices and check for particular month" do
+  it "should add invoices and check for paid amount for particular month" do
     @buyer.get_particular_month_paid_amount(3)
-    @buyer.paid_amount.should eq(36)
+    @buyer.paid_amount.should eq(60)
   end
 
-  it "should check for particular month but calculate un paid amount" do
+  it "should calculate paid amount for particular month but no product avaliable" do
     @buyer.get_particular_month_paid_amount(4)
     @buyer.paid_amount.should_not eq(13)
   end
   
   it "should check the invoice for the given date" do
     @buyer.get_invoice_till_date('2011-04-21')
-    @buyer.un_paid_amount.should eq(8)
+    @buyer.un_paid_amount.should eq(4)
   end  
   
-  it "should check the invoice for the given date but no invoice found" do
+  it "should no invoice found on given date" do
     @buyer.get_invoice_till_date('2010-04-21')
     @buyer.un_paid_amount.should eq(0)
   end  
