@@ -11,9 +11,16 @@ class Email
     @body = body
   end
   
-  def send_email
-    if Pony.mail(:to => @to, :from => @from, :subject => @subject, :body => @body)
-      return true
-    end
+  def send_email?
+      Pony.mail(:to => @to, :subject => @subject, :body => @body, :via => :smtp, :via_options => {
+        :address              => 'smtp.gmail.com',
+        :port                 => '587',
+        :enable_starttls_auto => true,
+        :user_name            => 'dineshgowthamprathap@gmail.com',
+        :password             => 'Manoharan',
+        :authentication       => :plain, # :plain, :login, :cram_md5, no auth by default
+        :domain               => "localhost.localdomain" # the HELO domain provided by the client to the server
+      })
   end
+  
 end
