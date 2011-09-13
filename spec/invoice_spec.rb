@@ -1,18 +1,16 @@
-require "/Users/dinesh/invoice/invoice/models/invoice"
-require "/Users/dinesh/invoice/invoice/models/seller.rb"
-require "/Users/dinesh/invoice/invoice/models/buyer.rb"
+require "/Users/dinesh/project/invoice/models/invoice"
+require "/Users/dinesh/project/invoice/models/seller.rb"
+require "/Users/dinesh/project/invoice/models/buyer.rb"
 
 describe Invoice do
 
   before(:each) do
     @seller = Seller.new('name', 'select_address')
     @buyer = Buyer.new('buyer', 'buyer_address')
-    product_1 = Product.new(1, 'AAAA', 30)
-    product_2 = Product.new(2, 'AAAA', 60)
     @invoice = Invoice.new(1, '2011-03-21')
     @invoice.buyer = @buyer
-    @invoice.add_product(product_1)
-    @invoice.add_product(product_2)  
+    @invoice.add_product(1, 'AAAA', 30)
+    @invoice.add_product(1, 'AAAA', 60)  
     @buyer.add_invoice(@invoice)
     @invoice.make_payement(90)  
   end

@@ -15,8 +15,8 @@ class Invoice
     @number = number
   end
   
-  def add_product(product)
-    @products.push(product)
+  def add_product(product_number, product_detail, product_price)
+    @products.push(Product.new(product_number, product_detail, product_price))
   end
   
   #TODO: find out better ways to doing this by looking into Array/Enumerable methods

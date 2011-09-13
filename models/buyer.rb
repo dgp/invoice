@@ -44,7 +44,7 @@ class Buyer < Agent
   
   def caluculate_un_paid_amount(invoice)
      if invoice.partially_paid?
-       puts @un_paid_amount += invoice.balance_un_paid_amount
+       puts @un_paid_amount += invoice.un_paid_amount
      end
    end
 end
