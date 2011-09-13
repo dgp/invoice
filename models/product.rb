@@ -1,9 +1,9 @@
 class Product
-  attr_reader :number, :detail, :price
-  def initialize(number, detail, price)
-    @products = [ ]
-    @number = number
-    @detail = detail
+  attr_reader :sq_no, :name, :price
+
+  def initialize(sq_no, name, price)
+    @sq_no = sq_no
+    @name = name
     @price = price
   end
   
