@@ -4,14 +4,14 @@ require 'enumerator'
 
 class Invoice 
   
-  attr_reader :number, :date, :products, :paid_amount, :un_paid_balance
+  attr_reader :number, :date, :products, :paid_amount
   attr_accessor :seller, :buyer
   
   def initialize(number, date)
     
     @products = [ ]
     @date = Date.strptime(date)
-    @un_paid_balance = 0
+    @paid_amount = 0
     @number = number
   end
   
